@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gamiez/features/core/presentation/widgets/app_bar.dart';
 import 'package:gamiez/features/core/presentation/widgets/error_screen.dart';
 import 'package:gamiez/features/core/presentation/widgets/loading_screen.dart';
 import 'package:gamiez/features/games/presentation/widgets/games_list_view.dart';
@@ -18,31 +19,13 @@ class _GamesScreenState extends ConsumerState<GamesScreen> {
     final games = ref.watch(gameNotifierProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const CircleAvatar(
-          backgroundImage: AssetImage('assets/gamiez.png'),
-          backgroundColor: Colors.transparent,
-        ),
-      ),
+      appBar: gamiezAppBar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: Center(
-                child: games.when(
-                  data: (data) => GamesListView(
-                    data,
-                    'Recommended games',
-                  ),
-                  error: (error, stackTrace) => ErrorScreen(error: error.toString()),
-                  loading: () => const LoadingScreen(),
-                ),
-              ),
-            ),
-          ],
+        child: games.when(
+          data: (data) => GamesListView(data, 'Recommended games'),
+          error: (error, stackTrace) => ErrorScreen(error: error.toString()),
+          loading: () => const LoadingScreen(),
         ),
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:gamiez/features/core/presentation/widgets/app_bar.dart';
 import 'package:gamiez/features/games/domain/game_details_response.dart';
 import 'package:gap/gap.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -15,13 +16,7 @@ class GameDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const CircleAvatar(
-          backgroundImage: AssetImage('assets/gamiez.png'),
-          backgroundColor: Colors.transparent,
-        ),
-      ),
+      appBar: gamiezAppBar(),
       body: SafeArea(
         bottom: false,
         child: SingleChildScrollView(
