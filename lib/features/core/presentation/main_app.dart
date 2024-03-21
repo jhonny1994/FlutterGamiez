@@ -4,6 +4,7 @@ import 'package:gamiez/features/core/presentation/not_connected_screen.dart';
 import 'package:gamiez/features/core/presentation/widgets/error_screen.dart';
 import 'package:gamiez/features/core/presentation/widgets/loading_screen.dart';
 import 'package:gamiez/features/core/providers/connectivity_provider.dart';
+import 'package:gamiez/features/games/presentation/games_screen.dart';
 import 'package:gamiez/theme/app_theme.dart';
 
 class MainApp extends ConsumerWidget {
@@ -17,7 +18,7 @@ class MainApp extends ConsumerWidget {
       theme: appTheme,
       home: Center(
         child: connectivityState.when(
-          data: (isConnected) => isConnected ? Container() : const NotConnectedScreen(),
+          data: (isConnected) => isConnected ? const GamesScreen() : const NotConnectedScreen(),
           error: (error, stackTrace) => ErrorScreen(error: error.toString()),
           loading: () => const LoadingScreen(),
         ),
