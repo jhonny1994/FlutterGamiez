@@ -9,7 +9,7 @@
 .history
 .svn/
 migrate_working_dir/
-
+.vscode/**
 # IntelliJ related
 *.iml
 *.ipr
@@ -30,6 +30,10 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+**.freezed.dart
+**.g.dart
+**.bak
+env.dart
 
 # Symbolication related
 app.*.symbols
